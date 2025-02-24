@@ -1,8 +1,12 @@
 package com.bridgelabz.greetingApp;
 
 import com.bridgelabz.greetingApp.greetingClass.Greeting;
+
 import com.bridgelabz.greetingApp.repository.GreetingRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.bridgelabz.greetingApp.greetingClass.GreetingService;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,9 +15,23 @@ import java.util.List;
 @RequestMapping("/greeting")
 public class GreetingController {
 
-    @Autowired
+    
     GreetingRepo repo;
 
+    private final GreetingService greetingService;
+
+    public GreetingController(GreetingService greetingService) {
+        this.greetingService = greetingService;
+    }
+
+    @GetMapping("/simpleGreeting")
+    public Greeting getGreeting(
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String lastName) {
+
+        String message = greetingService.greet(firstName, lastName);
+        return new Greeting(message);
+    }
 
     @GetMapping("/hello")
     public Greeting greeting() {
