@@ -60,7 +60,8 @@ public class GreetingController {
 
     @PostMapping("/hi")
     public void addGreeting(@RequestBody Greeting greeting){
-         repo.save(greeting);
+
+        repo.save(greeting);
     }
 
 }
