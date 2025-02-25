@@ -64,5 +64,12 @@ public class GreetingController {
             return repo.findById(id).get();
         }
 
+    //edit data from repository
+    @GetMapping("/hi/query/{id}")
+    public void editGreeting( @PathVariable int id,@RequestParam String newgreeting){
+        repo.findById(id).get().setGreeting(newgreeting);
+        repo.save( repo.findById(id).get());
+
+    }
 
 }
