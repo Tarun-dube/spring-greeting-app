@@ -64,6 +64,7 @@ public class GreetingController {
             return repo.findById(id).get();
         }
 
+
         //delete message
      @DeleteMapping("/hi/{id}")
     public void deleteGreeting(@PathVariable int id){
@@ -71,6 +72,14 @@ public class GreetingController {
      }
 
 
+
+    //edit data from repository
+    @GetMapping("/hi/query/{id}")
+    public void editGreeting( @PathVariable int id,@RequestParam String newgreeting){
+        repo.findById(id).get().setGreeting(newgreeting);
+        repo.save( repo.findById(id).get());
+
+    }
 
 
 }
