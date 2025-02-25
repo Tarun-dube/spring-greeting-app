@@ -49,7 +49,7 @@ public class GreetingController {
 
         return new Greeting("Deleted: " + id);
     }
-
+/// list all the messeages
     @GetMapping("/hi")
     public List<Greeting> getAllGreetings(){
         return repo.findAll();
