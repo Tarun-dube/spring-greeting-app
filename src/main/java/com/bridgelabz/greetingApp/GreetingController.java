@@ -64,5 +64,13 @@ public class GreetingController {
             return repo.findById(id).get();
         }
 
+        //delete message
+     @DeleteMapping("/hi/{id}")
+    public void deleteGreeting(@PathVariable int id){
+        repo.deleteById(id);
+     }
+
+
+
 
 }
